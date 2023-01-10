@@ -31,7 +31,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  number_to_words:
+  number_to_word_arabic:
     path: ../
 
   # The following adds the Cupertino Icons font to your application.

@@ -1,4 +1,4 @@
-library number_to_words;
+library number_to_word_arabic;
 
 
 

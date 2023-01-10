@@ -1,7 +1,7 @@
-name: number_to_words
-description: A new Flutter package.
+name: number_to_word_arabic
+description: Arabic  convert Flutter package.
 version: 0.0.1
-homepage:
+homepage: https://github.com/AKAKnown/number_to_words
 
 environment:
   sdk: '>=2.18.0 <3.0.0'

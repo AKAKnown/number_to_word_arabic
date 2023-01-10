@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:number_to_words/number_to_words.dart';
+import 'package:number_to_word_arabic/number_to_word_arabic.dart';
+
 
 void main() {
   runApp(const MyApp());
