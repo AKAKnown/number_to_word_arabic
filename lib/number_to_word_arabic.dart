@@ -14,7 +14,7 @@ enum Language {
   final String description;
 
   @override
-  String toString() => 'StatusCode($code, $description)';
+  String toString() => '($code, $description)';
 }
 class NumberToWords {
   static final List _LESS_THAN_20 = [
@@ -64,10 +64,9 @@ class NumberToWords {
     "تسعومائة"
   ];
   static final List _THOUSANDS = ["", "ألف", "مليون", "مليار"];
-  static final List _THOUSANDS_TOW = ["", "ألفان", "مليونان", "ملياران"];
-  static final List _THOUSANDS_TEN = ["", "آلاف", "ملايين", "مليارات"];
-
-  static final List _THOUSANDS_SUM = [
+  static final List _TOW = ["", "ألفان", "مليونان", "ملياران"];
+  static final List _TEN = ["", "آلاف", "ملايين", "مليارات"];
+  static final List _SUM = [
     "",
     "ألفاً",
     "مليوناً",
@@ -81,32 +80,18 @@ class NumberToWords {
     String andText;
     while (num > 0) {
       if (num % 1000 != 0) {
-        print(num % 1000);
         String resulte = _helper(num % 1000);
-        // print(resulte);
         andText = (words.isEmpty) ? "  " : " و";
         int x=num%1000;
-        // if(x>2 &&x<11){
-        //   words = "${resulte + ' ' + tho[3][i] + andText} $words ";
-        // }else{
-        //   words = "${resulte + ' ' + tho[x][i] + andText} $words ";
-        // }
-        // if (resulte == "واحد ") {
-        //   words = _THOUSANDS[i] + andText + words;
-        // } else if (resulte == "اثنين ") {
-        //   words = _THOUSANDS_TOW[i] + andText + words;
-        // } else {
-        //   words = "${resulte + ' ' + _THOUSANDS_SUM[i] + andText} $words ";
-        // }
         if (x==1) {
           words =(i==0)?resulte: _THOUSANDS[i] + andText + words;
         } else if (x==2) {
-          words = (i==0)?resulte:_THOUSANDS_TOW[i] + andText + words;
+          words = (i==0)?resulte:_TOW[i] + andText + words;
         } else if(x>2 &&x<11){
-          words = "${resulte + ' ' +_THOUSANDS_TEN[i]  + andText} $words ";
+          words = "${resulte + ' ' +_TEN[i]  + andText} $words ";
         }
         else {
-          words = "${resulte + ' ' + _THOUSANDS_SUM[i] + andText} $words ";
+          words = "${resulte + ' ' + _SUM[i] + andText} $words ";
         }
       }
 
@@ -114,56 +99,14 @@ class NumberToWords {
       i++;
     }
 
-    return words.trim()+' '+language.code;
+    return '${words.trim()} ${language.code}';
   }
-  static String numberToWordsDeimel(String number,{Language language=Language.LYD}) {
-    List<String> splitingNumber=number.split('.');
+  static String decimalToWord(String number,{Language language=Language.LYD}) {
 
-    print(splitingNumber.length);
-    int num=int.parse(splitingNumber.first);
-    int de=int.parse(splitingNumber.last);
-    if (num == 0) return "صفر";
-
-    int i = 0;
-    String words = "";
-    String andText;
-    while (num > 0) {
-      if (num % 1000 != 0) {
-        print(num % 1000);
-        String resulte = _helper(num % 1000);
-        // print(resulte);
-        andText = (words.isEmpty) ? "  " : " و";
-        int x=num%1000;
-        // if(x>2 &&x<11){
-        //   words = "${resulte + ' ' + tho[3][i] + andText} $words ";
-        // }else{
-        //   words = "${resulte + ' ' + tho[x][i] + andText} $words ";
-        // }
-        // if (resulte == "واحد ") {
-        //   words = _THOUSANDS[i] + andText + words;
-        // } else if (resulte == "اثنين ") {
-        //   words = _THOUSANDS_TOW[i] + andText + words;
-        // } else {
-        //   words = "${resulte + ' ' + _THOUSANDS_SUM[i] + andText} $words ";
-        // }
-        if (x==1) {
-          words =(i==0)?resulte: _THOUSANDS[i] + andText + words;
-        } else if (x==2) {
-          words = (i==0)?resulte:_THOUSANDS_TOW[i] + andText + words;
-        } else if(x>2 &&x<11){
-          words = "${resulte + ' ' +_THOUSANDS_TEN[i]  + andText} $words ";
-        }
-        else {
-          words = "${resulte + ' ' + _THOUSANDS_SUM[i] + andText} $words ";
-        }
-      }
-
-      num = (num / 1000).floor();
-      i++;
-    }
-
-    return words.trim()+' '+language.code+' ';
+    //TODO: convert decimal to List fo word
+    return '';
   }
+
 
   static String _helper(int num) {
     if (num == 0) {
